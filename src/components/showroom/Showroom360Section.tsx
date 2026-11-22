@@ -49,7 +49,7 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
   const currentModel = showcaseModels[activeModelIndex];
   const vehicleData = vehicles.find((v) => v.id === currentModel.id) || vehicles[0];
 
-  const [displayMode, setDisplayMode] = useState<'3d-canvas' | 'interactive-scrub' | 'video-loop'>('interactive-scrub');
+  const [displayMode, setDisplayMode] = useState<'interactive-scrub' | 'video-loop'>('interactive-scrub');
 
   return (
     <section id="showroom360" className="relative w-full py-28 sm:py-36 bg-[#07090d] border-t border-white/[0.06] overflow-hidden select-none">
@@ -120,19 +120,6 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
               </button>
 
               <button
-                onClick={() => setDisplayMode('3d-canvas')}
-                className={`px-4 py-1.5 text-xs font-tech uppercase tracking-wider rounded-full transition-colors flex items-center gap-1.5 cursor-pointer ${
-                  displayMode === '3d-canvas'
-                    ? 'bg-[#f36b21] text-black font-bold'
-                    : 'text-[#848a99] hover:text-white'
-                }`}
-                title="Interactive 3D WebGL Orbit"
-              >
-                <Box className="w-3.5 h-3.5" />
-                <span>{t.configurator.mode3D}</span>
-              </button>
-
-              <button
                 onClick={() => setDisplayMode('video-loop')}
                 className={`px-4 py-1.5 text-xs font-tech uppercase tracking-wider rounded-full transition-colors flex items-center gap-1.5 cursor-pointer ${
                   displayMode === 'video-loop'
@@ -154,15 +141,6 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
                 colorHex={currentModel.colorHex}
                 turntableColor={currentModel.turntable}
                 viewMode="360-turntable"
-                headlightsOn={true}
-                wheelStyle="aeroblade"
-                caliperColor="#f36b21"
-              />
-            ) : displayMode === '3d-canvas' ? (
-              <InteractiveCarViewer
-                colorHex={currentModel.colorHex}
-                turntableColor={currentModel.turntable}
-                viewMode="3d-canvas"
                 headlightsOn={true}
                 wheelStyle="aeroblade"
                 caliperColor="#f36b21"

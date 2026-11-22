@@ -27,8 +27,7 @@ export const ConfiguratorSection: React.FC<ConfiguratorSectionProps> = ({ onRequ
   const [selectedVehicleId, setSelectedVehicleId] = useState('vanta-gt900');
   const selectedVehicle = vehicles.find((v) => v.id === selectedVehicleId) || vehicles[0];
 
-  // View Mode: 3d-canvas (Real Three.js WebGL with car.glb) or 360-turntable (Photographic studio)
-  const [viewMode, setViewMode] = useState<'3d-canvas' | '360-turntable'>('3d-canvas');
+  // View Mode: Pure High-Definition 360 Photographic Studio Turntable
   const [resetSignal, setResetSignal] = useState(0);
 
   // 1. Color Swatches
@@ -147,31 +146,12 @@ export const ConfiguratorSection: React.FC<ConfiguratorSectionProps> = ({ onRequ
             </div>
           </div>
 
-          {/* Center Engine Switcher: 3D Interactive WebGL vs 360° Studio Turntable */}
-          <div className="flex items-center gap-2 p-1.5 bg-black/80 border border-white/10 rounded-full backdrop-blur-md self-start lg:self-auto">
-            <button
-              onClick={() => setViewMode('3d-canvas')}
-              className={`px-4 py-2 rounded-full text-xs font-tech uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
-                viewMode === '3d-canvas'
-                  ? 'bg-[#f36b21] text-black font-bold shadow-[0_0_15px_rgba(243,107,33,0.5)]'
-                  : 'text-[#848a99] hover:text-white'
-              }`}
-            >
-              <span className={`w-2 h-2 rounded-full ${viewMode === '3d-canvas' ? 'bg-black' : 'bg-[#f36b21]'}`}></span>
-              <span>{t.configurator.mode3D}</span>
-            </button>
-
-            <button
-              onClick={() => setViewMode('360-turntable')}
-              className={`px-4 py-2 rounded-full text-xs font-tech uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
-                viewMode === '360-turntable'
-                  ? 'bg-[#f36b21] text-black font-bold shadow-[0_0_15px_rgba(243,107,33,0.5)]'
-                  : 'text-[#848a99] hover:text-white'
-              }`}
-            >
-              <RotateCw className="w-3.5 h-3.5" />
-              <span>{t.configurator.mode360}</span>
-            </button>
+          {/* Center Luxury Studio Status Pill */}
+          <div className="flex items-center gap-2.5 px-4 py-2 bg-black/80 border border-white/10 rounded-full backdrop-blur-md self-start lg:self-auto shadow-lg">
+            <span className="w-2 h-2 rounded-full bg-[#f36b21] animate-pulse"></span>
+            <span className="text-xs font-tech text-white uppercase tracking-wider">
+              {isRTL ? 'استوديو العرض 360° الفاخر' : '360° ROTATIONAL STUDIO'}
+            </span>
           </div>
 
           {/* Right Price Display & Reset Button */}
@@ -203,13 +183,12 @@ export const ConfiguratorSection: React.FC<ConfiguratorSectionProps> = ({ onRequ
             <InteractiveCarViewer
               colorHex={selectedColor.hex}
               turntableColor={selectedColor.turntable}
-              viewMode={viewMode}
+              viewMode="360-turntable"
               headlightsOn={headlightsOn}
               wheelStyle={selectedWheel.id}
               wheelFinish={selectedWheelFinish.id}
               caliperColor={selectedCaliper.hex}
               resetSignal={resetSignal}
-              onViewModeChange={(m) => setViewMode(m)}
             />
           </div>
 

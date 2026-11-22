@@ -104,10 +104,10 @@ export const translations = {
     configurator: {
       badge: '360° STUDIO CONFIGURATOR',
       title: 'CRAFT YOUR BESPOKE VANTA',
-      subtitle: 'Interactive 3D WebGL and 360° studio turntable. Customize every nuance from signature paint finishes to forged wheels and aerodynamic packages.',
-      mode3D: 'Interactive 3D WebGL',
+      subtitle: 'High-definition 360° studio rotational turntable. Customize every nuance from signature paint finishes to forged wheels and aerodynamic packages.',
+      mode3D: '360° Rotational Studio',
       mode360: '360° Studio Turntable',
-      dragToRotate3D: 'Drag to orbit in 3D • Pinch / Scroll to zoom',
+      dragToRotate3D: 'Drag across studio floor to rotate 360°',
       dragToRotate360: 'Drag across floor to rotate 360°',
       angles: {
         front: 'Front',
@@ -469,10 +469,10 @@ export const translations = {
     configurator: {
       badge: 'استوديو التخصيص 360° الفاخر',
       title: 'صمّم سيارتك الخاصة من فانتا',
-      subtitle: 'استوديو تفاعلي عالي الدقة يجمع بين الأبعاد الثلاثية الحقيقية 3D WebGL والدوران الفوتوغرافي 360°. خصص كل تفصيلة من ألوان الطلاء إلى الجنوط والمكابح.',
-      mode3D: 'أبعاد ثلاثية تفاعلية 3D WebGL',
+      subtitle: 'استوديو دوران فوتوغرافي عالي الدقة بزاوية 360°. خصص كل تفصيلة من ألوان الطلاء إلى الجنوط والمكابح وحزم الأداء.',
+      mode3D: 'استوديو العرض 360°',
       mode360: 'استوديو الدوران الفوتوغرافي 360°',
-      dragToRotate3D: 'اسحب للتدوير الحر في الفضاء الثلاثي • قرّب للتكبير',
+      dragToRotate3D: 'اسحب عبر أرضية الاستوديو للتدوير 360° • قرّب للتكبير',
       dragToRotate360: 'اسحب عبر أرضية الاستوديو للتدوير 360°',
       angles: {
         front: 'المقدمة',
