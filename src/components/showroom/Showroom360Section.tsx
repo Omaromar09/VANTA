@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { vehicles } from '../../data/vehicles';
 import { InteractiveCarViewer } from '../configurator/InteractiveCarViewer';
-import { RotateCw, Video, ArrowRight, Eye } from 'lucide-react';
+import { RotateCw, Video, ArrowRight, Eye, Box, Sliders } from 'lucide-react';
 
 interface Showroom360SectionProps {
   onOpenDetails: (carId: string) => void;
@@ -13,13 +13,13 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
   onOpenDetails,
   onBookTestDrive,
 }) => {
-  const { isRTL } = useLanguage();
+  const { t, isRTL } = useLanguage();
 
   const showcaseModels = [
     {
       id: 'vanta-gt900',
       name: 'VANTA GT-900',
-      edition: 'Signature Metallic Orange Edition',
+      edition: isRTL ? 'إصدار أورانج ميتاليك التوقيعي' : 'Signature Metallic Orange Edition',
       turntable: 'orange' as const,
       colorHex: '#F36B21',
       tag: 'QUAD-TURBO HYBRID // 980 HP',
@@ -28,7 +28,7 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
     {
       id: 'vanta-spectre-x',
       name: 'VANTA SPECTRE X',
-      edition: 'Titanium Liquid Silver Stealth Edition',
+      edition: isRTL ? 'إصدار تيتانيوم سيلفر ستيلث' : 'Titanium Liquid Silver Stealth Edition',
       turntable: 'silver' as const,
       colorHex: '#BFC2C7',
       tag: 'TWIN-TURBO V12 // 1,020 HP',
@@ -37,7 +37,7 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
     {
       id: 'vanta-nocturne',
       name: 'VANTA NOCTURNE',
-      edition: 'Vanta Obsidian Track Carbon Edition',
+      edition: isRTL ? 'إصدار أوبسيديان تراك كربون' : 'Vanta Obsidian Track Carbon Edition',
       turntable: 'black' as const,
       colorHex: '#0A0B0E',
       tag: 'NATURALLY ASPIRATED V12 // 950 HP',
@@ -49,7 +49,7 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
   const currentModel = showcaseModels[activeModelIndex];
   const vehicleData = vehicles.find((v) => v.id === currentModel.id) || vehicles[0];
 
-  const [displayMode, setDisplayMode] = useState<'interactive-scrub' | 'video-loop'>('interactive-scrub');
+  const [displayMode, setDisplayMode] = useState<'3d-canvas' | 'interactive-scrub' | 'video-loop'>('interactive-scrub');
 
   return (
     <section id="showroom360" className="relative w-full py-28 sm:py-36 bg-[#07090d] border-t border-white/[0.06] overflow-hidden select-none">
@@ -60,13 +60,13 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <span className="text-[11px] font-tech text-[#f36b21] tracking-[0.3em] uppercase block mb-3">
-            360° CINEMATIC STUDIO
+            {t.showroom360.badge}
           </span>
           <h2 className="font-display font-black text-4xl sm:text-6xl text-white tracking-tight uppercase leading-[0.95]">
-            INSPECT EVERY CONTOUR
+            {t.showroom360.title}
           </h2>
           <p className="mt-4 text-sm text-[#848a99] font-light leading-relaxed">
-            Drag across the studio floor to rotate the vehicle 360 degrees. Switch between our signature metallic paint finishes and high-speed turntable video footage.
+            {t.showroom360.subtitle}
           </p>
 
           {/* Model Switcher Pills */}
@@ -85,7 +85,7 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
                   className="w-2.5 h-2.5 rounded-full border border-white/30"
                   style={{ backgroundColor: m.colorHex }}
                 ></span>
-                <span>{m.name}</span>
+                <span dir="ltr">{m.name}</span>
               </button>
             ))}
           </div>
@@ -96,14 +96,15 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
           {/* Top Stage Bar */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.06]">
             <div>
-              <span className="text-[10px] font-tech text-[#f36b21] uppercase tracking-widest block">
+              <span dir="ltr" className="text-[10px] font-tech text-[#f36b21] uppercase tracking-widest block telemetry-val">
                 {currentModel.tag}
               </span>
               <h3 className="font-display font-black text-2xl text-white mt-1">
-                {currentModel.name} <span className="text-sm font-normal text-[#848a99]">— {currentModel.edition}</span>
+                <span dir="ltr">{currentModel.name}</span> <span className="text-sm font-normal text-[#848a99]">— {currentModel.edition}</span>
               </h3>
             </div>
 
+            {/* Stage Mode Switcher */}
             <div className="flex items-center p-1 bg-black/70 border border-white/10 rounded-full self-start sm:self-auto">
               <button
                 onClick={() => setDisplayMode('interactive-scrub')}
@@ -112,10 +113,25 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
                     ? 'bg-[#f36b21] text-black font-bold'
                     : 'text-[#848a99] hover:text-white'
                 }`}
+                title="360° Studio Turntable"
               >
                 <RotateCw className="w-3.5 h-3.5" />
-                <span>360° Drag Scrub</span>
+                <span>{t.showroom360.dragScrub}</span>
               </button>
+
+              <button
+                onClick={() => setDisplayMode('3d-canvas')}
+                className={`px-4 py-1.5 text-xs font-tech uppercase tracking-wider rounded-full transition-colors flex items-center gap-1.5 cursor-pointer ${
+                  displayMode === '3d-canvas'
+                    ? 'bg-[#f36b21] text-black font-bold'
+                    : 'text-[#848a99] hover:text-white'
+                }`}
+                title="Interactive 3D WebGL Orbit"
+              >
+                <Box className="w-3.5 h-3.5" />
+                <span>{t.configurator.mode3D}</span>
+              </button>
+
               <button
                 onClick={() => setDisplayMode('video-loop')}
                 className={`px-4 py-1.5 text-xs font-tech uppercase tracking-wider rounded-full transition-colors flex items-center gap-1.5 cursor-pointer ${
@@ -123,9 +139,10 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
                     ? 'bg-[#f36b21] text-black font-bold'
                     : 'text-[#848a99] hover:text-white'
                 }`}
+                title="Studio Video Turntable"
               >
                 <Video className="w-3.5 h-3.5" />
-                <span>Studio Video</span>
+                <span>{t.showroom360.studioVideo}</span>
               </button>
             </div>
           </div>
@@ -137,6 +154,15 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
                 colorHex={currentModel.colorHex}
                 turntableColor={currentModel.turntable}
                 viewMode="360-turntable"
+                headlightsOn={true}
+                wheelStyle="aeroblade"
+                caliperColor="#f36b21"
+              />
+            ) : displayMode === '3d-canvas' ? (
+              <InteractiveCarViewer
+                colorHex={currentModel.colorHex}
+                turntableColor={currentModel.turntable}
+                viewMode="3d-canvas"
                 headlightsOn={true}
                 wheelStyle="aeroblade"
                 caliperColor="#f36b21"
@@ -160,16 +186,16 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-white/[0.06]">
             <div className="flex items-center gap-6 text-xs font-tech text-[#848a99]">
               <div>
-                <span className="text-[#f36b21] font-bold">ACCEL: </span>
-                <span className="text-white">{vehicleData.specs.acceleration}</span>
+                <span className="text-[#f36b21] font-bold">{t.showroom360.accelLabel} </span>
+                <span dir="ltr" className="text-white font-medium telemetry-val">{vehicleData.specs.acceleration}</span>
               </div>
               <div>
-                <span className="text-[#f36b21] font-bold">V-MAX: </span>
-                <span className="text-white">{vehicleData.specs.topSpeed}</span>
+                <span className="text-[#f36b21] font-bold">{t.showroom360.vmaxLabel} </span>
+                <span dir="ltr" className="text-white font-medium telemetry-val">{vehicleData.specs.topSpeed}</span>
               </div>
               <div className="hidden sm:block">
-                <span className="text-[#f36b21] font-bold">STARTING AT: </span>
-                <span className="text-white">{vehicleData.priceEstimate}</span>
+                <span className="text-[#f36b21] font-bold">{t.showroom360.startingAtLabel} </span>
+                <span dir="ltr" className="text-white font-medium telemetry-val">{vehicleData.priceEstimate}</span>
               </div>
             </div>
 
@@ -178,13 +204,13 @@ export const Showroom360Section: React.FC<Showroom360SectionProps> = ({
                 onClick={() => onOpenDetails(currentModel.id)}
                 className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-tech text-white uppercase tracking-wider transition-colors cursor-pointer"
               >
-                Vehicle Dossier
+                {t.showroom360.vehicleDossier}
               </button>
               <button
                 onClick={() => onBookTestDrive(currentModel.name)}
                 className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#f36b21] to-[#ff8c37] text-black font-bold text-xs uppercase tracking-wider transition-transform active:scale-95 cursor-pointer shadow-[0_0_20px_rgba(243,107,33,0.3)]"
               >
-                Schedule Private Viewing
+                {t.showroom360.scheduleViewing}
               </button>
             </div>
           </div>

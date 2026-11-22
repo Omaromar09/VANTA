@@ -60,9 +60,9 @@ export const SmartBookingModal: React.FC<SmartBookingModalProps> = ({
   // Validation
   const validateStep4 = () => {
     const errs: Record<string, string> = {};
-    if (!customerName.trim()) errs.name = 'Full name is required';
-    if (!email.trim() || !email.includes('@')) errs.email = 'Valid email is required';
-    if (!phone.trim()) errs.phone = 'Contact phone number is required';
+    if (!customerName.trim()) errs.name = isRTL ? 'الاسم الكامل مطلوب' : 'Full name is required';
+    if (!email.trim() || !email.includes('@')) errs.email = isRTL ? 'البريد الإلكتروني مطلوب' : 'Valid email is required';
+    if (!phone.trim()) errs.phone = isRTL ? 'رقم الهاتف للتواصل مطلوب' : 'Contact phone number is required';
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -142,29 +142,31 @@ export const SmartBookingModal: React.FC<SmartBookingModalProps> = ({
 
         {/* Step Progress Bar (1 to 5) */}
         {currentStep <= 5 && (
-          <div className="bg-[#0e1118] px-6 py-3 border-b border-[#1b1e28] flex items-center justify-between text-xs font-mono-tech">
-            {[1, 2, 3, 4, 5].map((s) => (
-              <div key={s} className="flex items-center gap-2">
-                <div
-                  className={`w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold ${
-                    currentStep === s
-                      ? 'bg-[#f36b21] text-black shadow-[0_0_10px_#f36b21]'
-                      : currentStep > s
-                      ? 'bg-[#1b1e28] text-[#f36b21]'
-                      : 'bg-[#13161f] text-[#5a6070]'
-                  }`}
-                >
-                  {currentStep > s ? '✓' : s}
+          <div className="bg-[#0e1118] px-6 py-3 border-b border-[#1b1e28] flex items-center justify-between text-xs font-tech">
+            {[1, 2, 3, 4, 5].map((s) => {
+              const stepLabelsEn = ['Experience', 'Vehicle', 'Schedule', 'Client', 'Confirm'];
+              const stepLabelsAr = ['التجربة', 'السيارة', 'الموعد', 'العميل', 'التأكيد'];
+              const label = isRTL ? stepLabelsAr[s - 1] : stepLabelsEn[s - 1];
+
+              return (
+                <div key={s} className="flex items-center gap-2">
+                  <div
+                    className={`w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold ${
+                      currentStep === s
+                        ? 'bg-[#f36b21] text-black shadow-[0_0_10px_#f36b21]'
+                        : currentStep > s
+                        ? 'bg-[#1b1e28] text-[#f36b21]'
+                        : 'bg-[#13161f] text-[#5a6070]'
+                    }`}
+                  >
+                    {currentStep > s ? '✓' : s}
+                  </div>
+                  <span className={`hidden sm:inline ${currentStep === s ? 'text-white' : 'text-[#8b919e]'}`}>
+                    {label}
+                  </span>
                 </div>
-                <span className={`hidden sm:inline ${currentStep === s ? 'text-white' : 'text-[#8b919e]'}`}>
-                  {s === 1 && 'Experience'}
-                  {s === 2 && 'Vehicle'}
-                  {s === 3 && 'Schedule'}
-                  {s === 4 && 'Client'}
-                  {s === 5 && 'Confirm'}
-                </span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 
@@ -484,10 +486,10 @@ export const SmartBookingModal: React.FC<SmartBookingModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setCurrentStep((s) => s - 1)}
-                  className="px-4 py-2 rounded bg-[#12151e] border border-[#1b1e28] text-xs font-mono-tech text-[#bfc2c7] hover:text-white flex items-center gap-1.5"
+                  className="px-4 py-2 rounded bg-[#12151e] border border-[#1b1e28] text-xs font-tech text-[#bfc2c7] hover:text-white flex items-center gap-1.5 cursor-pointer"
                 >
                   <ArrowLeft className={`w-3.5 h-3.5 ${isRTL ? 'rotate-180' : ''}`} />
-                  <span>Previous</span>
+                  <span>{isRTL ? 'السابق' : 'Previous'}</span>
                 </button>
               ) : (
                 <div></div>
@@ -500,15 +502,15 @@ export const SmartBookingModal: React.FC<SmartBookingModalProps> = ({
                     if (currentStep === 4 && !validateStep4()) return;
                     setCurrentStep((s) => s + 1);
                   }}
-                  className="px-6 py-2.5 rounded-sm bg-[#f36b21] hover:bg-[#ff7a1a] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-1.5"
+                  className="px-6 py-2.5 rounded-full bg-[#f36b21] hover:bg-[#ff7a1a] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 cursor-pointer transition-all active:scale-95 shadow-[0_0_15px_rgba(243,107,33,0.3)]"
                 >
-                  <span>Next Step</span>
+                  <span>{isRTL ? 'الخطوة التالية' : 'Next Step'}</span>
                   <ArrowRight className={`w-3.5 h-3.5 ${isRTL ? 'rotate-180' : ''}`} />
                 </button>
               ) : (
                 <button
                   type="submit"
-                  className="px-8 py-3 rounded-sm bg-gradient-to-r from-[#f36b21] to-[#ff7a1a] text-black font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(243,107,33,0.4)] flex items-center gap-2 active:scale-95"
+                  className="px-8 py-3 rounded-full bg-gradient-to-r from-[#f36b21] to-[#ff7a1a] text-black font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(243,107,33,0.4)] flex items-center gap-2 active:scale-95 cursor-pointer"
                 >
                   <Check className="w-4 h-4" />
                   <span>{t.booking.submitBtn}</span>

@@ -30,18 +30,19 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-xl overflow-y-auto animate-in fade-in duration-300">
-      <div className="relative w-full max-w-3xl bg-[#090b10] border border-[#1b1e28] rounded-sm shadow-2xl my-auto overflow-hidden">
+      <div className="relative w-full max-w-3xl bg-[#090b10] border border-[#1b1e28] rounded-xl shadow-2xl my-auto overflow-hidden">
         {/* Header */}
         <div className="flex items-center justify-between p-4 sm:p-6 border-b border-[#1b1e28] bg-[#0c0e15]">
           <div className="flex items-center gap-3">
             <Heart className="w-5 h-5 text-red-500 fill-current" />
-            <h3 className="font-display font-bold text-lg text-white">
-              SAVED HYPERCARS ({favCars.length})
+            <h3 className="font-display font-black text-lg text-white uppercase tracking-wider">
+              {t.favorites.title} ({favCars.length})
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded bg-[#12151e] hover:bg-[#1f2433] text-[#bfc2c7] hover:text-white transition-colors"
+            className="p-2 rounded-lg bg-[#12151e] hover:bg-[#1f2433] text-[#bfc2c7] hover:text-white transition-colors cursor-pointer"
+            aria-label={t.common.close}
           >
             <X className="w-5 h-5" />
           </button>
@@ -50,28 +51,29 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
         {/* Content */}
         <div className="p-4 sm:p-6 max-h-[75vh] overflow-y-auto">
           {favCars.length === 0 ? (
-            <div className="py-16 text-center text-[#8b919e] font-mono-tech text-xs">
-              No vehicles currently saved. Click the heart icon on any vehicle card to save it for quick review.
+            <div className="py-16 text-center text-[#8b919e] font-tech text-xs">
+              <p className="text-base text-white mb-2">{t.favorites.emptyTitle}</p>
+              <p>{t.favorites.emptySubtitle}</p>
             </div>
           ) : (
             <div className="flex flex-col gap-4">
               {favCars.map((car) => (
                 <div
                   key={car.id}
-                  className="p-4 rounded-sm bg-[#0e1118] border border-[#1b1e28] flex flex-col sm:flex-row items-center justify-between gap-4"
+                  className="p-4 rounded-xl bg-[#0e1118] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4"
                 >
                   <div className="flex items-center gap-4 w-full sm:w-auto">
                     <img
                       src={car.heroImage}
                       alt={car.name}
-                      className="w-24 aspect-16/10 object-cover rounded-sm border border-[#1b1e28]"
+                      className="w-24 aspect-16/10 object-cover rounded-lg border border-white/10 shrink-0"
                     />
                     <div>
-                      <span className="text-[10px] font-mono-tech text-[#f36b21] uppercase">
+                      <span className="text-[10px] font-tech text-[#f36b21] uppercase">
                         {car.category}
                       </span>
                       <h4 className="font-display font-bold text-lg text-white">{car.name}</h4>
-                      <span className="text-xs font-mono-tech text-[#bfc2c7]">
+                      <span dir="ltr" className="text-xs font-tech text-[#bfc2c7] block telemetry-val">
                         {car.specs.power} • {car.specs.acceleration}
                       </span>
                     </div>
@@ -83,8 +85,8 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                         onClose();
                         onOpenConfigurator(car.id);
                       }}
-                      className="p-2 rounded bg-[#151924] hover:bg-[#202738] text-xs font-mono-tech text-[#f36b21]"
-                      title="Customize in Studio"
+                      className="p-2 rounded-lg bg-[#151924] hover:bg-[#202738] text-xs font-tech text-[#f36b21] cursor-pointer"
+                      title={t.favorites.configureCTA}
                     >
                       <Sliders className="w-4 h-4" />
                     </button>
@@ -93,14 +95,14 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                         onClose();
                         onOpenDetails(car.id);
                       }}
-                      className="px-3 py-1.5 rounded bg-[#1b1e28] hover:bg-[#282d3d] text-xs font-mono-tech text-white"
+                      className="px-3 py-1.5 rounded-lg bg-[#1b1e28] hover:bg-[#282d3d] text-xs font-tech text-white cursor-pointer"
                     >
-                      Dossier
+                      {isRTL ? 'الملف' : 'Dossier'}
                     </button>
                     <button
                       onClick={() => onRemoveFavorite(car.id)}
-                      className="p-2 rounded bg-black/40 hover:bg-red-500/20 text-[#8b919e] hover:text-red-400"
-                      title="Remove"
+                      className="p-2 rounded-lg bg-black/40 hover:bg-red-500/20 text-[#8b919e] hover:text-red-400 cursor-pointer"
+                      title={t.favorites.remove}
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>

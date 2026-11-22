@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
-import { Sparkles, Shield, Cpu, Award, Compass, Eye } from 'lucide-react';
+import { Compass, Cpu, Shield, Award } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   const { t, isRTL } = useLanguage();
@@ -8,53 +8,53 @@ export const AboutSection: React.FC = () => {
   const values = [
     {
       icon: <Cpu className="w-5 h-5 text-[#f36b21]" />,
-      title: 'Aerodynamic Obsession',
-      desc: 'Form dictated strictly by airflow. Every curve, duct, and venturi tunnel serves to stabilize the machine at terminal velocities.',
+      title: t.about.val1Title,
+      desc: t.about.val1Desc,
     },
     {
       icon: <Shield className="w-5 h-5 text-[#f36b21]" />,
-      title: 'Molecular Surface Defense',
-      desc: 'Partnering aerospace ceramic technology with self-healing films so that perfection remains impervious to the elements.',
+      title: t.about.val2Title,
+      desc: t.about.val2Desc,
     },
     {
       icon: <Award className="w-5 h-5 text-[#f36b21]" />,
-      title: '7P STUDIO Artistry',
-      desc: 'Engineered as an avant-garde digital showcase demonstrating high-fidelity 360° studio interaction, cinematic motion design, and bespoke software craft.',
+      title: t.about.val3Title,
+      desc: t.about.val3Desc,
     },
   ];
 
   return (
-    <section id="about" className="relative w-full py-24 sm:py-32 bg-[#06070a] border-t border-[#151822]">
+    <section id="about" className="relative w-full py-24 sm:py-32 bg-[#06070a] border-t border-white/[0.06] select-none">
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Text */}
+          {/* Text Column */}
           <div className="lg:col-span-7 flex flex-col gap-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#111318] border border-[#f36b21]/30 text-[10px] sm:text-xs font-mono-tech text-[#f36b21] tracking-widest uppercase self-start">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-[#f36b21]/30 text-[10px] sm:text-xs font-tech text-[#f36b21] tracking-widest uppercase self-start">
               <Compass className="w-3.5 h-3.5" />
-              <span>THE MANIFESTO // 7P STUDIO</span>
+              <span>{t.about.badge}</span>
             </div>
 
-            <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight leading-tight">
-              WHERE AERODYNAMIC RACING BLOOD MEETS ARTISAN PERFECTION.
+            <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight uppercase leading-[1.05]">
+              {t.about.title}
             </h2>
 
             <p className="text-base text-[#bfc2c7] font-light leading-relaxed">
-              VANTA is born from an uncompromising creative vision by <strong>7P STUDIO</strong>. We conceived VANTA to shatter the standard boundaries of digital automotive presentation, uniting genuine 360° rotational studio mechanics with high-definition cinematic studio recordings.
+              {t.about.p1}
             </p>
 
-            <p className="text-sm text-[#8b919e] font-light leading-relaxed">
-              From our flagship GT-900 hybrid hypercar to our five bespoke ceramic and protection divisions, every element embodies the dark, metallic spirit of VANTA: precision engineering, absolute presence, and timeless restraint.
+            <p className="text-sm text-[#848a99] font-light leading-relaxed">
+              {t.about.p2}
             </p>
 
             {/* Values Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#1b1e28]">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/[0.06]">
               {values.map((v, idx) => (
-                <div key={idx} className="p-4 rounded-sm bg-[#0a0c12] border border-[#1b1e28]">
+                <div key={idx} className="p-4 rounded-xl bg-[#0a0c12] border border-white/[0.08] hover:border-[#f36b21]/30 transition-colors">
                   {v.icon}
                   <h4 className="font-display font-bold text-sm text-white mt-2.5">
                     {v.title}
                   </h4>
-                  <p className="text-xs text-[#8b919e] mt-1.5 font-light leading-relaxed">
+                  <p className="text-xs text-[#848a99] mt-1.5 font-light leading-relaxed">
                     {v.desc}
                   </p>
                 </div>
@@ -62,9 +62,9 @@ export const AboutSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Visual Composition */}
+          {/* Visual Composition */}
           <div className="lg:col-span-5 relative">
-            <div className="relative rounded-sm overflow-hidden border border-[#1b1e28] bg-[#0c0e15] shadow-2xl">
+            <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] bg-[#0c0e15] shadow-2xl">
               <img
                 src="/images/spectre-front.jpg"
                 alt="VANTA Design Philosophy"
@@ -73,12 +73,12 @@ export const AboutSection: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
 
-              <div className="absolute bottom-6 inset-x-6 p-4 bg-black/80 backdrop-blur-md border border-[#1b1e28] rounded-sm">
-                <span className="text-[10px] font-mono-tech text-[#f36b21] uppercase tracking-wider block">
-                  CREATIVE VISION BY 7P STUDIO
+              <div className="absolute bottom-6 inset-x-6 p-4 bg-black/80 backdrop-blur-md border border-white/10 rounded-xl">
+                <span className="text-[10px] font-tech text-[#f36b21] uppercase tracking-wider block">
+                  {t.about.visionTag}
                 </span>
                 <span className="font-display font-bold text-sm text-white mt-1 block">
-                  "Speed is mathematics. Presence is pure emotion."
+                  {t.about.quote}
                 </span>
               </div>
             </div>

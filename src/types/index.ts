@@ -51,22 +51,31 @@ export interface ServiceFAQ {
 export interface AutomotiveService {
   id: string;
   title: string;
+  titleAr?: string;
   shortDesc: string;
+  shortDescAr?: string;
   fullDesc: string;
+  fullDescAr?: string;
   benefits: string[];
+  benefitsAr?: string[];
   process: ServiceStep[];
   duration: string;
+  durationAr?: string;
   priceStartingAt: number;
   image: string;
   faqs: ServiceFAQ[];
   badge?: string;
+  badgeAr?: string;
 }
 
 export interface BeforeAfterItem {
   id: string;
   title: string;
+  titleAr?: string;
   category: string;
+  categoryAr?: string;
   description: string;
+  descriptionAr?: string;
   beforeImage: string;
   afterImage: string;
 }

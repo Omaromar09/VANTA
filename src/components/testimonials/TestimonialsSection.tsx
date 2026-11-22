@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
-import { Star, ShieldCheck, Quote, Sparkles } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
 
 export const TestimonialsSection: React.FC = () => {
   const { t, isRTL } = useLanguage();
@@ -8,59 +8,62 @@ export const TestimonialsSection: React.FC = () => {
   const reviews = [
     {
       id: 'rev-01',
-      author: 'Lord Julian Sterling',
-      title: 'Private Collector & Historic Racer',
-      location: 'Geneva / London',
+      author: isRTL ? 'اللورد جوليان ستيرلينغ' : 'Lord Julian Sterling',
+      title: isRTL ? 'جامع سيارات وسائق سباقات كلاسيكية' : 'Private Collector & Historic Racer',
+      location: isRTL ? 'جنيف / لندن' : 'Geneva / London',
       stars: 5,
-      service: '10H Ceramic Coating & PPF Wrap',
+      service: isRTL ? 'طلاء سيراميك 10H وتغليف PPF' : '10H Ceramic Coating & PPF Wrap',
       car: 'VANTA GT-900',
-      comment:
-        'The depth of the metallic orange paint after the 10H ceramic bake is unparalleled. Even under harsh paddock light, there isn’t a single micro-swirl. VANTA’s team sets a standard that exceeds factory concours deliveries.',
+      comment: isRTL
+        ? 'عمق طلاء الأورانج ميتاليك بعد المعالجة بالأشعة تحت الحمراء للسيراميك 10H يفوق الوصف. حتى تحت أضواء البادوك الساطعة، لا تجد خدشاً مجهرياً واحداً. فريق فانتا يضع معياراً يتجاوز تسليمات المصانع العالمية.'
+        : 'The depth of the metallic orange paint after the 10H ceramic bake is unparalleled. Even under harsh paddock light, there isn’t a single micro-swirl. VANTA’s team sets a standard that exceeds factory concours deliveries.',
     },
     {
       id: 'rev-02',
-      author: 'Mansoor Al-Falasi',
-      title: 'Exotic Fleet Custodian',
-      location: 'Dubai, UAE',
+      author: isRTL ? 'منصور الفلاسي' : 'Mansoor Al-Falasi',
+      title: isRTL ? 'مشرف أسطول سيارات فائقة' : 'Exotic Fleet Custodian',
+      location: isRTL ? 'دبي، الإمارات' : 'Dubai, UAE',
       stars: 5,
-      service: 'Bespoke Carbon Aero Fitment',
+      service: isRTL ? 'تعديل وتثبيت كربون أيرو حصري' : 'Bespoke Carbon Aero Fitment',
       car: 'VANTA SPECTRE X',
-      comment:
-        'We evaluated the titanium silver finish through their 360 configurator before committing to the full track aero upgrade. The real car matches the 3D digital simulation down to the millimeter. Unprecedented digital luxury.',
+      comment: isRTL
+        ? 'عاينّا تشطيب التيتانيوم السائل عبر استوديو التخصيص 360 قبل طلب الترقية الكاملة لحزمة الحلبات. والسيارة الحقيقية تطابقت مع المحاكاة الرقمية ثلاثية الأبعاد بدقة ملليمترية. رفاهية رقمية غير مسبوقة.'
+        : 'We evaluated the titanium silver finish through their 360 configurator before committing to the full track aero upgrade. The real car matches the 3D digital simulation down to the millimeter. Unprecedented digital luxury.',
     },
     {
       id: 'rev-03',
-      author: 'Henrik Vestergaard',
-      title: 'Supercar Endurance Driver',
-      location: 'Copenhagen, Denmark',
+      author: isRTL ? 'هنريك فيسترجارد' : 'Henrik Vestergaard',
+      title: isRTL ? 'سائق سباقات تحمل للسيارات الخارقة' : 'Supercar Endurance Driver',
+      location: isRTL ? 'كوبنهاغن، الدنمارك' : 'Copenhagen, Denmark',
       stars: 5,
-      service: 'Concours Paint Leveling',
+      service: isRTL ? 'تسوية وتصحيح طلاء كونكور' : 'Concours Paint Leveling',
       car: 'VANTA NOCTURNE',
-      comment:
-        'Exposed carbon fiber is the most unforgiving material on earth to correct. VANTA removed all orange peel from our Nocturne clearcoat, delivering absolute liquid glass clarity. Simply extraordinary.',
+      comment: isRTL
+        ? 'ألياف الكربون المكشوفة هي أصعب الأسطح في المعالجة والتلميع. نجحت فانتا في إزالة تموجات قشر البرتقال من ورنيش نوكتورن ومنحتنا صفاءً كالزجاج السائل. تجربة استثنائية بكل المقاييس.'
+        : 'Exposed carbon fiber is the most unforgiving material on earth to correct. VANTA removed all orange peel from our Nocturne clearcoat, delivering absolute liquid glass clarity. Simply extraordinary.',
     },
   ];
 
   return (
-    <section className="relative w-full py-24 sm:py-32 bg-[#050608] border-t border-[#151822]">
+    <section className="relative w-full py-24 sm:py-32 bg-[#050608] border-t border-white/[0.06] select-none">
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#1b1e28]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.06]">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#111318] border border-[#f36b21]/30 text-[10px] sm:text-xs font-mono-tech text-[#f36b21] tracking-widest uppercase mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-[#f36b21]/30 text-[10px] sm:text-xs font-tech text-[#f36b21] tracking-widest uppercase mb-3">
               <Quote className="w-3.5 h-3.5" />
-              <span>COLLECTOR DISPATCHES</span>
+              <span>{t.testimonials.badge}</span>
             </div>
-            <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
-              COMMISSION TESTIMONIALS
+            <h2 className="font-display font-black text-4xl sm:text-6xl text-white tracking-tight uppercase leading-[0.95]">
+              {t.testimonials.title}
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-[#8b919e] max-w-2xl font-light">
-              Reflections from private collectors, hypercar custodians, and automotive enthusiasts.
+            <p className="mt-3 text-sm text-[#848a99] max-w-2xl font-light">
+              {t.testimonials.subtitle}
             </p>
           </div>
 
-          <div className="px-3 py-1.5 rounded bg-[#11141f] border border-[#1b1e28] text-[11px] font-mono-tech text-[#8b919e]">
-            CONCEPT DEMO ENDORSEMENTS
+          <div className="px-3.5 py-1.5 rounded-full bg-black/60 border border-white/10 text-[11px] font-tech text-[#848a99]">
+            {t.testimonials.conceptEndorsement}
           </div>
         </div>
 
@@ -69,7 +72,7 @@ export const TestimonialsSection: React.FC = () => {
           {reviews.map((rev) => (
             <div
               key={rev.id}
-              className="bg-[#090b10] border border-[#1b1e28] hover:border-[#f36b21]/40 rounded-sm p-6 sm:p-8 flex flex-col justify-between gap-6 transition-all duration-300"
+              className="bg-[#090b10] border border-white/[0.08] hover:border-[#f36b21]/40 rounded-xl p-6 sm:p-8 flex flex-col justify-between gap-6 transition-all duration-300 shadow-xl"
             >
               <div>
                 {/* Stars */}
@@ -84,15 +87,15 @@ export const TestimonialsSection: React.FC = () => {
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-[#1b1e28]">
+              <div className="pt-4 border-t border-white/[0.06]">
                 <span className="font-display font-bold text-sm text-white block">
                   {rev.author}
                 </span>
-                <span className="text-[11px] font-mono-tech text-[#f36b21] block">
+                <span className="text-[11px] font-tech text-[#f36b21] block mt-0.5">
                   {rev.title} • {rev.location}
                 </span>
-                <div className="mt-2 text-[10px] font-mono-tech text-[#8b919e]">
-                  COMMISSION: {rev.car} ({rev.service})
+                <div className="mt-2 text-[10px] font-tech text-[#848a99]">
+                  {t.testimonials.commission} <span dir="ltr" className="text-white font-medium">{rev.car}</span> ({rev.service})
                 </div>
               </div>
             </div>

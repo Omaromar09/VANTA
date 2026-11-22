@@ -27,7 +27,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
   onToggleCompare,
   inCompare,
 }) => {
-  const { isRTL } = useLanguage();
+  const { t, isRTL } = useLanguage();
 
   if (!vehicle) return null;
 
@@ -40,8 +40,8 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
         <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/[0.06] bg-[#0c0f16]">
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-[#f36b21] animate-ping"></span>
-            <span className="text-xs font-tech text-[#f36b21] tracking-widest uppercase">
-              {vehicle.category} // OFFICIAL DOSSIER
+            <span className="text-xs font-tech text-[#f36b21] tracking-widest uppercase font-semibold">
+              {vehicle.category} // {t.collection.officialDossier}
             </span>
           </div>
 
@@ -53,10 +53,10 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                   ? 'bg-[#f36b21] text-black border-[#f36b21] font-bold'
                   : 'bg-black/60 text-[#bfc2c7] border-white/10 hover:text-white'
               }`}
-              title="Compare"
+              title={inCompare ? t.collection.inCompare : t.collection.compare}
             >
               <Scale className="w-4 h-4" />
-              <span className="hidden sm:inline">{inCompare ? 'In Compare' : 'Compare'}</span>
+              <span className="hidden sm:inline">{inCompare ? t.collection.inCompare : t.collection.compare}</span>
             </button>
 
             <button
@@ -66,7 +66,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                   ? 'bg-red-500/20 text-red-500 border-red-500/50'
                   : 'bg-black/60 text-[#bfc2c7] border-white/10 hover:text-[#f36b21]'
               }`}
-              title="Favorite"
+              title={t.collection.favorite}
             >
               <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
             </button>
@@ -74,6 +74,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
             <button
               onClick={onClose}
               className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+              aria-label="Close"
             >
               <X className="w-5 h-5" />
             </button>
@@ -90,8 +91,8 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 alt={vehicle.name}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-4 left-4 px-3 py-1 bg-black/80 backdrop-blur-md border border-white/10 rounded-full text-xs font-tech text-[#f36b21]">
-                {vehicle.name}
+              <div className="absolute top-4 start-4 px-3 py-1 bg-black/80 backdrop-blur-md border border-white/10 rounded-full text-xs font-tech text-[#f36b21]">
+                <span dir="ltr">{vehicle.name}</span>
               </div>
             </div>
 
@@ -117,7 +118,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-8 pb-6 border-b border-white/[0.06]">
             <div>
               <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight uppercase">
-                {vehicle.name}
+                <span dir="ltr">{vehicle.name}</span>
               </h2>
               <p className="text-sm sm:text-base text-[#f36b21] font-tech mt-1 tracking-wide">
                 {vehicle.tagline}
@@ -126,9 +127,9 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
 
             <div className="text-start md:text-end">
               <span className="text-[10px] font-tech text-[#5a6070] uppercase block">
-                STARTING ALLOCATION
+                {t.collection.startingAllocation}
               </span>
-              <span className="font-display font-black text-3xl text-white">
+              <span dir="ltr" className="telemetry-val font-display font-black text-3xl text-white">
                 {vehicle.priceEstimate}
               </span>
             </div>
@@ -139,7 +140,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
             <div className="lg:col-span-7 flex flex-col gap-6">
               <div>
                 <h4 className="text-xs font-tech text-[#848a99] uppercase tracking-widest mb-2 font-bold">
-                  ENGINEERING PHILOSOPHY
+                  {t.collection.engineeringPhilosophy}
                 </h4>
                 <p className="text-sm text-[#bfc2c7] font-light leading-relaxed">
                   {vehicle.description}
@@ -148,7 +149,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
 
               <div>
                 <h4 className="text-xs font-tech text-[#848a99] uppercase tracking-widest mb-3 font-bold">
-                  AERODYNAMIC & CHASSIS HIGHLIGHTS
+                  {t.collection.aeroHighlights}
                 </h4>
                 <ul className="flex flex-col gap-2.5">
                   {vehicle.overview.map((item, idx) => (
@@ -163,7 +164,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               {/* Available Colors */}
               <div>
                 <h4 className="text-xs font-tech text-[#848a99] uppercase tracking-widest mb-3 font-bold">
-                  CURATED SURFACE FINISHES
+                  {t.collection.curatedFinishes}
                 </h4>
                 <div className="flex items-center gap-3">
                   {vehicle.availableColors.map((color, idx) => (
@@ -182,51 +183,51 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
             <div className="lg:col-span-5 bg-[#0e1118] border border-white/[0.08] rounded-xl p-6 flex flex-col justify-between gap-4">
               <h4 className="text-xs font-tech text-[#f36b21] uppercase tracking-widest border-b border-white/[0.06] pb-3 flex items-center gap-2 font-bold">
                 <Gauge className="w-4 h-4" />
-                OFFICIAL SPECIFICATIONS
+                {t.collection.officialSpecs}
               </h4>
 
               <div className="flex flex-col gap-3 text-xs font-tech">
                 <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
-                  <span className="text-[#848a99]">POWERTRAIN</span>
-                  <span className="text-white font-bold">{vehicle.specs.power}</span>
+                  <span className="text-[#848a99]">{t.collection.powertrain}</span>
+                  <span dir="ltr" className="text-white font-bold telemetry-val">{vehicle.specs.power}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
-                  <span className="text-[#848a99]">TORQUE</span>
-                  <span className="text-white">{vehicle.specs.torque}</span>
+                  <span className="text-[#848a99]">{t.collection.torque}</span>
+                  <span dir="ltr" className="text-white telemetry-val">{vehicle.specs.torque}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
-                  <span className="text-[#848a99]">0–100 KM/H</span>
-                  <span className="text-[#f36b21] font-bold">{vehicle.specs.acceleration}</span>
+                  <span className="text-[#848a99]">{t.collection.accelMetric}</span>
+                  <span dir="ltr" className="text-[#f36b21] font-bold telemetry-val">{vehicle.specs.acceleration}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
-                  <span className="text-[#848a99]">TOP SPEED</span>
-                  <span className="text-white font-bold">{vehicle.specs.topSpeed}</span>
+                  <span className="text-[#848a99]">{t.collection.topSpeed}</span>
+                  <span dir="ltr" className="text-white font-bold telemetry-val">{vehicle.specs.topSpeed}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
-                  <span className="text-[#848a99]">ENGINE ARCHITECTURE</span>
-                  <span className="text-white text-end max-w-[200px]">{vehicle.specs.engine}</span>
+                  <span className="text-[#848a99]">{t.collection.engineArch}</span>
+                  <span dir="ltr" className="text-white text-end max-w-[200px] telemetry-val">{vehicle.specs.engine}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
-                  <span className="text-[#848a99]">TRANSMISSION</span>
-                  <span className="text-white text-end max-w-[200px]">{vehicle.specs.transmission}</span>
+                  <span className="text-[#848a99]">{t.collection.transmission}</span>
+                  <span dir="ltr" className="text-white text-end max-w-[200px] telemetry-val">{vehicle.specs.transmission}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
-                  <span className="text-[#848a99]">CURB WEIGHT</span>
-                  <span className="text-white">{vehicle.specs.weight}</span>
+                  <span className="text-[#848a99]">{t.collection.curbWeight}</span>
+                  <span dir="ltr" className="text-white telemetry-val">{vehicle.specs.weight}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
-                  <span className="text-[#848a99]">DOWNFORCE</span>
-                  <span className="text-white">{vehicle.specs.downforce}</span>
+                  <span className="text-[#848a99]">{t.collection.downforce}</span>
+                  <span dir="ltr" className="text-white telemetry-val">{vehicle.specs.downforce}</span>
                 </div>
                 <div className="flex justify-between py-1.5">
-                  <span className="text-[#848a99]">DRIVE TYPE</span>
-                  <span className="text-white text-end">{vehicle.specs.driveType}</span>
+                  <span className="text-[#848a99]">{t.collection.driveType}</span>
+                  <span dir="ltr" className="text-white text-end telemetry-val">{vehicle.specs.driveType}</span>
                 </div>
               </div>
 
               <div className="p-3 bg-black/60 border border-white/[0.06] rounded-lg text-[10px] text-[#848a99] font-tech flex items-start gap-2">
                 <Info className="w-3.5 h-3.5 text-[#f36b21] flex-shrink-0 mt-0.5" />
-                <span>Concept simulated metrics validated through wind-tunnel scale modeling.</span>
+                <span>{t.collection.conceptNoticeModal}</span>
               </div>
             </div>
           </div>
@@ -241,7 +242,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#141824] hover:bg-[#1d2232] border border-white/10 text-xs font-tech text-white uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer"
             >
               <Sliders className="w-4 h-4 text-[#f36b21]" />
-              <span>Launch Studio Configurator</span>
+              <span>{t.collection.launchConfigurator}</span>
             </button>
 
             <button
@@ -252,7 +253,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               className="w-full sm:w-auto px-8 py-3 rounded-full bg-gradient-to-r from-[#f36b21] to-[#ff8c37] text-black font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(243,107,33,0.4)] flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer"
             >
               <Calendar className="w-4 h-4" />
-              <span>Schedule VIP Viewing / Drive</span>
+              <span>{t.collection.scheduleViewingBtn}</span>
             </button>
           </div>
         </div>

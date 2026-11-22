@@ -4,15 +4,26 @@ export const services: AutomotiveService[] = [
   {
     id: 'ceramic-coating',
     title: '10H Nanotechnology Ceramic Coating',
+    titleAr: 'طلاء نانو سيراميك بصلابة 10H الفائقة',
     shortDesc: 'Permanent molecular quartz shield providing extreme hydrophobic water beading, chemical resistance, and diamond-like gloss depth.',
+    shortDescAr: 'درع جزيئي دائم من الكوارتز يوفر مقاومة كيميائية قاسية، طرداً فائقاً للماء والسوائل، ولمعاناً عميقاً يحاكي بريق الألماس.',
     fullDesc:
       'VANTA Ceramic Shield utilizes 10H hardness liquid quartz nanoparticles that cross-link directly with your vehicle’s factory clearcoat. The result is a hardened sacrificial barrier that resists swirl marks, acid rain, bird droppings, and UV oxidation while delivering an unyielding mirror reflection.',
+    fullDescAr:
+      'تعتمد تقنية درع فانتا السيراميكي على جزيئات نانوية من الكوارتز السائل بصلابة 10H تترابط كيميائياً مع طبقة الطلاء الشفافة الأصلية. والنتيجة هي حاجز حماية صلب يقاوم الخدوش الدقيقة، والأمطار الحمضية، والتأكسد الناتج عن أشعة الشمس فوق البنفسجية، مع منح الهيكل انعكاساً مرآوياً استثنائياً.',
     benefits: [
       '10H hardness rating on pencil hardness scale',
       'Ultra-hydrophobic self-cleaning contact angle > 115°',
       '5-Year written transferable warranty certificate',
       'Enhanced depth and clarity on metallic & solid paints',
       'UV blocking prevents premature pigment fading',
+    ],
+    benefitsAr: [
+      'صلابة 10H معتمدة على مقياس الصلابة القياسي',
+      'خاصية طرد سوائل فائقة بزاوية تلامس تتجاوز 115 درجة',
+      'ضمان خطي معتمد لمدة 5 سنوات قابل للتحويل',
+      'تعزيز غير مسبوق لعمق وبريق الطلاء الميتاليك والصلب',
+      'عزل كامل للأشعة فوق البنفسجية لحماية الصبغة من البهتان',
     ],
     process: [
       { step: 1, title: 'Multi-Stage Decontamination', description: 'pH-neutral snow foam bath, iron fallout removal, and clay bar treatment to eliminate all surface contaminants.' },
@@ -22,9 +33,11 @@ export const services: AutomotiveService[] = [
       { step: 5, title: 'Infrared Shortwave Curing', description: 'Controlled IR baking at 65°C for 30 minutes per panel to lock the molecular lattice.' },
     ],
     duration: '2 to 3 Days',
+    durationAr: 'من 2 إلى 3 أيام',
     priceStartingAt: 1850,
     image: '/images/hero-car-final-frame.jpg',
     badge: 'Signature Finish',
+    badgeAr: 'التشطيب الأيقوني',
     faqs: [
       { question: 'How long does the 10H ceramic coating last?', answer: 'Our 10H coating provides up to 5 years of verified protection when maintained with our annual inspection wash.' },
       { question: 'Can ceramic coating be applied over PPF?', answer: 'Yes! We frequently apply ceramic coating on top of paint protection film to give the film hydrophobic and anti-dirt properties.' },
@@ -33,15 +46,26 @@ export const services: AutomotiveService[] = [
   {
     id: 'paint-protection-film',
     title: 'Bespoke Self-Healing Paint Protection Film (PPF)',
+    titleAr: 'أفلام حماية الطلاء ذاتية المعالجة (PPF)',
     shortDesc: 'Optically clear 8.5-mil polyurethane armour that heals scratches under solar heat and prevents stone chip impact damage.',
+    shortDescAr: 'درع بولي يوريثان نقي بسماكة 8.5 مل يعالج الخدوش ذاتياً بفعل حرارة الشمس، ويحمي الطلاء من ضربات الحصى والحطام.',
     fullDesc:
       'Engineered for track and high-speed road use, our Paint Protection Film is precision-cut using laser digital patterns tailored specifically to every contour of your vehicle. The advanced elastomeric polymer topcoat automatically reflows when exposed to heat, erasing swirl marks and light scratches instantly.',
+    fullDescAr:
+      'تم تصميم أفلام حماية فانتا للاستخدام على الحلبات والسرعات العالية، وتُقص بالليزر بدقة ملليمترية مطابقة تماماً لانحناءات سيارتك. تمتاز الطبقة الخارجية ببوليمرات مرنة تتمدد وتلتئم ذاتياً بمجرد تعرضها للحرارة لتمحو الخدوش السطحية فوراً.',
     benefits: [
       'Self-healing elastomeric topcoat against light abrasions',
       'Superior stone chip and road debris puncture resistance',
       'Custom wrapped edges with zero visible seam lines',
       'Available in Ultra Gloss, Satin Matte, or Carbon Weave texture',
       '10-Year anti-yellowing and delamination guarantee',
+    ],
+    benefitsAr: [
+      'التئام ومعالجة ذاتية سريعة للخدوش والاحتكاكات البسيطة',
+      'مقاومة فائقة لاختراق الحصى المتطاير وحطام الطرق السريعة',
+      'ثني حواف الفيلم بالكامل دون أي خطوط أو فواصل مرئية',
+      'متوفر بلمعان فائق، أو مطفي ساتان ملوكي، أو نسيج كربوني',
+      'ضمان لمدة 10 سنوات ضد الاصفرار أو تفكك الأطراف',
     ],
     process: [
       { step: 1, title: 'Digital CAD Templating', description: 'Precision laser plotting matched to exact vehicle millimeter dimensions.' },
@@ -51,9 +75,11 @@ export const services: AutomotiveService[] = [
       { step: 5, title: 'Heat Gun Stabilization', description: 'Post-heating edges to 90°C to activate memory seal.' },
     ],
     duration: '3 to 5 Days',
+    durationAr: 'من 3 إلى 5 أيام',
     priceStartingAt: 3400,
     image: '/images/spectre-front.jpg',
     badge: 'Maximum Defense',
+    badgeAr: 'أقصى حماية',
     faqs: [
       { question: 'Will PPF damage my original factory paint upon removal?', answer: 'Not at all. When removed professionally with steam, genuine OEM paint remains pristine and identical to the day it was applied.' },
       { question: 'Can you wrap in Satin Matte to change the car finish?', answer: 'Yes! Our Satin Matte PPF transforms any gloss car into a frozen satin stealth finish while providing the same rock-solid protection.' },
@@ -62,15 +88,26 @@ export const services: AutomotiveService[] = [
   {
     id: 'detailing-polishing',
     title: 'Master-Level Concours Detailing & Polishing',
+    titleAr: 'تلميع وتصحيح طلاء كونكور احترافي',
     shortDesc: 'Multi-stage rotary and random-orbital paint correction achieving 98%+ optical clarity and flawless reflection.',
+    shortDescAr: 'تصحيح طلاء متعدد المراحل بأجهزة مدارية دقيقة لتحقيق وضوح بصري بنسبة تتجاوز 98% وانعكاس خالٍ من الشوائب.',
     fullDesc:
       'Standard detailing cleans; VANTA Concours Detailing restores vehicles to better-than-factory perfection. Utilizing electronic paint depth gauges and microscopic inspection lamps, our master detailers level out factory orange peel, sand scratches, and wash marring to uncover jewel-like gloss.',
+    fullDescAr:
+      'التلميع التقليدي يقتصر على التنظيف؛ بينما يعيد تلميع كونكور من فانتا سيارتك إلى حالة تفوق جودة المصنع. باستخدام مقاييس رقمية لسماكة الطلاء ومصابيح فحص مجهرية، نسوي تموجات الطلاء السطحية ونزيل دوائر الغسيل لنكشف عن لمعان سائل كالمرآة.',
     benefits: [
       '95% - 99% swirl mark and hologram defect elimination',
       'Digital paint depth meter monitoring on every metal and carbon panel',
       'Exhaust tip mirror polishing & wheel drum cleaning',
       'Jeweling polish stage using ultra-fine micro-abrasives',
       'Swissvax carnauba or synthetic sealant base coat applied',
+    ],
+    benefitsAr: [
+      'إزالة دوائر الغسيل والهالات بنسبة تتراوح بين 95% إلى 99%',
+      'قياس إلكتروني لسماكة الطلاء لضمان الحفاظ على أمان الطبقة الأصلية',
+      'تلميع مرآوي لمخارج العادم وتنظيف أسطوانات العجلات الداخلية',
+      'مرحلة صقل مجوهرات دقيقة تعطي انعكاساً كريستالياً نقياً',
+      'تطبيق شمع كارنوبا سويسري فاخر أو سيلانت نانو للحماية',
     ],
     process: [
       { step: 1, title: 'Depth Profiling', description: 'Measuring clearcoat thickness across 40+ reference points.' },
@@ -80,9 +117,11 @@ export const services: AutomotiveService[] = [
       { step: 5, title: 'Polymer Sealant Shield', description: 'Hydrophobic spray sealant applied for instant slickness.' },
     ],
     duration: '1 to 2 Days',
+    durationAr: 'من يوم إلى يومين',
     priceStartingAt: 950,
     image: '/images/nocturne-front.jpg',
     badge: 'Concours Grade',
+    badgeAr: 'مستوى المعارض الدولية',
     faqs: [
       { question: 'How much clearcoat is removed during polishing?', answer: 'Our master detailers take away only 1 to 2 microns of clearcoat, leaving more than 95% of your factory layer completely intact.' },
     ],
@@ -90,15 +129,26 @@ export const services: AutomotiveService[] = [
   {
     id: 'exterior-customization',
     title: 'Bespoke Aerodynamics & Exterior Upgrades',
+    titleAr: 'تعديلات إيروديناميكية وترقيات كربون حصرية',
     shortDesc: 'Wind-tunnel tested carbon fiber splitters, diffusers, forged wheel retrofits, and titanium exhaust installations.',
+    shortDescAr: 'مشتتات هواء وأجنحة ألياف كربون مختبرة بنفق الرياح، وجنوط مطروقة مخصصة، وعوادم تيتانيوم بصوت هادر.',
     fullDesc:
       'Elevate your vehicle from extraordinary to singular. VANTA specializes in dry pre-preg autoclave carbon fiber aero components, custom center-lock forged wheel fitment, bespoke painted accent striping, and valvetronic titanium exhaust systems that alter the acoustic character of your engine.',
+    fullDescAr:
+      'ارتقِ بسيارتك من الاستثنائية إلى الفريدة المطلقة. تختص فانتا بتصنيع قطع الكربون الجاف المعالجة بالأوتوكلاف، وضبط العجلات المطروقة بنظام القفل المركزي، وأنظمة العادم التيتانيوم المزودة بصمامات إلكترونية لتغيير النبرة الصوتية للمحرك.',
     benefits: [
       'Dry autoclave pre-preg carbon fiber (2x2 twill & forged carbon)',
       'Custom wheel offset and stance alignment for flush fitment',
       'Valvetronic titanium exhaust systems with remote valve switch',
       'Bespoke caliper paint customization with custom heat-resistant logos',
       'Functional aerodynamic downforce enhancements',
+    ],
+    benefitsAr: [
+      'ألياف كربون جافة أصلية (Pre-preg) بتقنية الأوتوكلاف خفيفة الوزن',
+      'ملاءمة تامة لأبعاد العجلات مع مظهر هجومي متناسق مع الرفارف',
+      'أنظمة عوادم تيتانيوم بصمامات ذكية للتحكم بدرجة الصوت والأداء',
+      'تخصيص ألوان ملاقط المكابح مع شعارات مقاومة لدرجات الحرارة القصوى',
+      'قوة سفلية حقيقية Downforce تعزز الثبات والاتزان عند المنعطفات',
     ],
     process: [
       { step: 1, title: '3D Scan & Render Consultation', description: 'Digital scanning and 3D preview of carbon components on your vehicle model.' },
@@ -108,9 +158,11 @@ export const services: AutomotiveService[] = [
       { step: 5, title: 'Track or Dynamic Road Test', description: 'Verification of zero vibrations and acoustic exhaust harmonics.' },
     ],
     duration: '3 to 7 Days',
+    durationAr: 'من 3 إلى 7 أيام',
     priceStartingAt: 4500,
     image: '/images/gt900-side.jpg',
     badge: 'Custom Engineering',
+    badgeAr: 'هندسة حصرية',
     faqs: [
       { question: 'Are the carbon parts functional or purely cosmetic?', answer: 'All VANTA aerodynamic parts are developed and tested for genuine aerodynamic downforce and high-speed stability.' },
     ],
@@ -118,15 +170,26 @@ export const services: AutomotiveService[] = [
   {
     id: 'interior-care',
     title: 'Artisan Interior Detailing & Leather Restoration',
+    titleAr: 'عناية داخلية حرفية وتجديد الجلود الفاخرة',
     shortDesc: 'pH-balanced Swiss leather conditioning, Alcantara fiber rejuvenation, steam sterilization, and ceramic leather shielding.',
+    shortDescAr: 'ترطيب الجلود الطبيعية بمنتجات سويسرية متعادلة الحموضة، تجديد ألياف الكانتارا، تعقيم بالبخار، وحماية سيراميكية للجلود.',
     fullDesc:
       'The cockpit is where the driver interacts with the soul of the machine. Our interior specialists restore aniline leather, deep-clean delicate Alcantara fibers, and apply breathable hydrophobic ceramic coatings to protect light-colored leather from denim dye transfer and UV cracking.',
+    fullDescAr:
+      'المقصورة هي مساحة التواصل المباشر بين السائق وروح السيارة. يعيد حرفيونا تجديد جلود الأنيلين الفاخرة، وتنظيف ألياف الألكانتارا الحساسة، وتطبيق درع سيراميكي غير مرئي يحمي الجلود الفاتحة من تصبغات أقمشة الجينز والتشقق.',
     benefits: [
       'Steam sterilization reaching deep air vent ducts and hidden seams',
       'Alcantara pile brushing and hydrophobic barrier application',
       'Leather recoloring and crack repair by certified master artisans',
       'Ceramic leather shield prevents denim dye stains and spill penetration',
       'Odor neutralization leaving an authentic luxury leather bouquet',
+    ],
+    benefitsAr: [
+      'تعقيم بالبخار الجاف يصل لمجاري التكييف والأركان الخفية',
+      'تمشيط وتجديد ألياف الألكانتارا مع طبقة طاردة للبقع',
+      'إعادة صبغ وترميم تشققات الجلد بأيدي حرفيين معتمدين',
+      'درع سيراميكي يمنع تسرب السوائل وانتقال صبغة الجينز إلى المقاعد',
+      'إزالة الروائح العالقة وإعادة شذى الجلد الفاخر الأصلي للمقصورة',
     ],
     process: [
       { step: 1, title: 'Dry Extraction & HEPA Vacuuming', description: 'Clearing all micro-debris from carpets, seams, and seat perforations.' },
@@ -136,9 +199,11 @@ export const services: AutomotiveService[] = [
       { step: 5, title: 'Ceramic Leather Hydro-Shield', description: 'Invisible hydrophobic coating applied to all high-contact bolster areas.' },
     ],
     duration: '1 Day',
+    durationAr: 'يوم عمل واحد',
     priceStartingAt: 750,
     image: '/images/gt900-rear.jpg',
     badge: 'Artisan Cabin',
+    badgeAr: 'مقصورة حرفية',
     faqs: [
       { question: 'Will ceramic leather coating make the seats shiny or slippery?', answer: 'No. Our coating cures to a completely natural matte finish with OEM tactile softness and zero slip.' },
     ],

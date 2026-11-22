@@ -3,8 +3,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { vehicles } from '../../data/vehicles';
 import { VehicleCategory } from '../../types';
 import { 
-  Search, Heart, Scale, ArrowRight, Zap, 
-  Gauge, Wind, Sliders, ChevronRight 
+  Search, Heart, Scale, Zap, Gauge, Wind, Sliders, ChevronRight 
 } from 'lucide-react';
 
 interface VehicleCollectionProps {
@@ -64,10 +63,10 @@ export const VehicleCollection: React.FC<VehicleCollectionProps> = ({
   }, [activeCategory, searchQuery, sortBy]);
 
   const categories = [
-    { id: 'all' as VehicleCategory, label: 'All Fleet' },
-    { id: 'hypercars' as VehicleCategory, label: 'Hypercars' },
-    { id: 'supercars' as VehicleCategory, label: 'Supercars' },
-    { id: 'performance' as VehicleCategory, label: 'Performance & Track' },
+    { id: 'all' as VehicleCategory, label: t.collection.allFleet },
+    { id: 'hypercars' as VehicleCategory, label: t.collection.hypercars },
+    { id: 'supercars' as VehicleCategory, label: t.collection.supercars },
+    { id: 'performance' as VehicleCategory, label: t.collection.performance },
   ];
 
   return (
@@ -76,21 +75,22 @@ export const VehicleCollection: React.FC<VehicleCollectionProps> = ({
         {/* Editorial Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.06]">
           <div>
-            <span className="text-[11px] font-tech text-[#f36b21] tracking-[0.3em] uppercase block mb-3">
-              THE CURATED FLEET // 2026
+            <span className="text-[11px] font-tech text-[#f36b21] tracking-[0.3em] uppercase block mb-3 font-semibold">
+              {t.collection.badge}
             </span>
             <h2 className="font-display font-black text-4xl sm:text-6xl text-white tracking-tight uppercase leading-[0.95]">
-              AUTOMOTIVE SHOWROOM
+              {t.collection.title}
             </h2>
-            <p className="mt-3 text-sm text-[#848a99] max-w-xl font-light">
-              Explore our fleet of aerodynamically honed hypercars, track-focused prototypes, and grand tourers. Each model is engineered for uncompromising emotional presence.
+            <p className="mt-3 text-sm text-[#848a99] max-w-xl font-light leading-relaxed">
+              {t.collection.subtitle}
             </p>
           </div>
 
           {/* Quick Counter */}
           <div className="flex items-center gap-3 text-xs font-tech text-[#848a99]">
-            <span className="px-3 py-1.5 rounded-full bg-[#0d1017] border border-white/10">
-              FLEET COUNT: <strong className="text-white">{vehicles.length}</strong>
+            <span className="px-3.5 py-1.5 rounded-full bg-[#0d1017] border border-white/10 flex items-center gap-1.5">
+              <span>{t.collection.fleetCount}</span>
+              <strong dir="ltr" className="text-white telemetry-val">{vehicles.length}</strong>
             </span>
           </div>
         </div>
@@ -117,12 +117,12 @@ export const VehicleCollection: React.FC<VehicleCollectionProps> = ({
           {/* Search & Sort Controls */}
           <div className="flex items-center gap-3">
             <div className="relative w-full sm:w-64">
-              <Search className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#848a99] start-3" />
+              <Search className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#848a99] start-3 pointer-events-none" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search models, engines..."
+                placeholder={t.collection.searchPlaceholder}
                 className="w-full py-2 bg-[#0c0e14] border border-white/10 rounded-full text-xs text-white placeholder-[#5a6070] focus:border-[#f36b21] focus:outline-none transition-colors ps-8 pe-3"
               />
             </div>
@@ -132,15 +132,15 @@ export const VehicleCollection: React.FC<VehicleCollectionProps> = ({
               onChange={(e: any) => setSortBy(e.target.value)}
               className="py-2 px-3 bg-[#0c0e14] border border-white/10 rounded-full text-xs font-tech text-[#bfc2c7] focus:border-[#f36b21] focus:outline-none cursor-pointer"
             >
-              <option value="featured">Featured First</option>
-              <option value="power">Highest Power</option>
-              <option value="accel">Quickest Acceleration</option>
-              <option value="price">Starting Investment</option>
+              <option value="featured">{t.collection.featuredFirst}</option>
+              <option value="power">{t.collection.highestPower}</option>
+              <option value="accel">{t.collection.quickestAccel}</option>
+              <option value="price">{t.collection.startingInvestment}</option>
             </select>
           </div>
         </div>
 
-        {/* Luxury Editorial Vehicle Cards Grid (Matching Reference 4 - LuxeMotion Style) */}
+        {/* Luxury Editorial Vehicle Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-12">
           {filteredVehicles.map((car) => {
             const isFav = favorites.includes(car.id);
@@ -163,7 +163,7 @@ export const VehicleCollection: React.FC<VehicleCollectionProps> = ({
 
                   {/* Top Floating Category Tag & Utility Actions */}
                   <div className="absolute top-4 inset-x-4 flex items-center justify-between z-10">
-                    <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[9px] font-tech text-[#f36b21] tracking-widest uppercase">
+                    <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[9px] font-tech text-[#f36b21] tracking-widest uppercase font-semibold">
                       {car.category}
                     </span>
 
@@ -175,7 +175,8 @@ export const VehicleCollection: React.FC<VehicleCollectionProps> = ({
                             ? 'bg-[#f36b21] text-black border-[#f36b21]'
                             : 'bg-black/60 text-[#bfc2c7] border-white/10 hover:text-white'
                         }`}
-                        title={inCompare ? 'Remove from Compare' : 'Add to Compare'}
+                        title={inCompare ? t.collection.inCompare : t.collection.compare}
+                        aria-label={inCompare ? t.collection.inCompare : t.collection.compare}
                       >
                         <Scale className="w-3.5 h-3.5" />
                       </button>
@@ -187,26 +188,27 @@ export const VehicleCollection: React.FC<VehicleCollectionProps> = ({
                             ? 'bg-red-500/20 text-red-500 border-red-500/50'
                             : 'bg-black/60 text-[#bfc2c7] border-white/10 hover:text-[#f36b21]'
                         }`}
-                        title="Save to Favorites"
+                        title={t.collection.favorite}
+                        aria-label={t.collection.favorite}
                       >
                         <Heart className={`w-3.5 h-3.5 ${isFav ? 'fill-current' : ''}`} />
                       </button>
                     </div>
                   </div>
 
-                  {/* Telemetry Trio Overlay */}
+                  {/* Telemetry Trio Overlay with LTR Isolation */}
                   <div className="absolute bottom-3 inset-x-4 flex items-center justify-between text-[11px] font-tech text-[#bfc2c7]">
                     <div className="flex items-center gap-1">
-                      <Zap className="w-3 h-3 text-[#f36b21]" />
-                      <span>{car.specs.power}</span>
+                      <Zap className="w-3 h-3 text-[#f36b21] shrink-0" />
+                      <span dir="ltr" className="telemetry-val">{car.specs.power}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Gauge className="w-3 h-3 text-[#f36b21]" />
-                      <span>{car.specs.acceleration}</span>
+                      <Gauge className="w-3 h-3 text-[#f36b21] shrink-0" />
+                      <span dir="ltr" className="telemetry-val">{car.specs.acceleration}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Wind className="w-3 h-3 text-[#f36b21]" />
-                      <span>{car.specs.topSpeed}</span>
+                      <Wind className="w-3 h-3 text-[#f36b21] shrink-0" />
+                      <span dir="ltr" className="telemetry-val">{car.specs.topSpeed}</span>
                     </div>
                   </div>
                 </div>
@@ -216,9 +218,9 @@ export const VehicleCollection: React.FC<VehicleCollectionProps> = ({
                   <div>
                     <div className="flex items-baseline justify-between">
                       <h3 className="font-display font-black text-2xl text-white group-hover:text-[#f36b21] transition-colors tracking-tight">
-                        {car.name}
+                        <span dir="ltr">{car.name}</span>
                       </h3>
-                      <span className="font-tech text-xs text-[#5a6070]">{car.year}</span>
+                      <span dir="ltr" className="font-tech text-xs text-[#5a6070] telemetry-val">{car.year}</span>
                     </div>
 
                     <p className="text-xs text-[#848a99] mt-1 font-tech tracking-wide line-clamp-1">
@@ -234,9 +236,9 @@ export const VehicleCollection: React.FC<VehicleCollectionProps> = ({
                   <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between gap-4">
                     <div>
                       <span className="text-[10px] font-tech text-[#5a6070] uppercase block">
-                        STARTING ALLOCATION
+                        {t.collection.startingAllocation}
                       </span>
-                      <span className="font-display font-bold text-lg text-white">
+                      <span dir="ltr" className="telemetry-val font-display font-bold text-lg text-white">
                         {car.priceEstimate}
                       </span>
                     </div>
@@ -245,7 +247,8 @@ export const VehicleCollection: React.FC<VehicleCollectionProps> = ({
                       <button
                         onClick={() => onOpenConfigurator(car.id)}
                         className="px-3 py-2 rounded-full bg-[#141824] hover:bg-[#1d2232] border border-white/10 text-xs font-tech text-[#f36b21] hover:text-[#ff8c37] transition-all cursor-pointer"
-                        title="Open in Studio Configurator"
+                        title={t.collection.launchConfigurator}
+                        aria-label={t.collection.launchConfigurator}
                       >
                         <Sliders className="w-3.5 h-3.5" />
                       </button>
@@ -254,8 +257,8 @@ export const VehicleCollection: React.FC<VehicleCollectionProps> = ({
                         onClick={() => onOpenDetails(car.id)}
                         className="px-4 py-2 rounded-full bg-white/10 hover:bg-[#f36b21] text-white hover:text-black font-semibold text-xs tracking-wider uppercase transition-all flex items-center gap-1.5 cursor-pointer"
                       >
-                        <span>Explore</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
+                        <span>{t.collection.explore}</span>
+                        <ChevronRight className={`w-3.5 h-3.5 ${isRTL ? 'rotate-180' : ''}`} />
                       </button>
                     </div>
                   </div>

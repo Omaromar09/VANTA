@@ -13,23 +13,23 @@ export const EditorialShowcase: React.FC<EditorialShowcaseProps> = ({
 }) => {
   const { t, isRTL } = useLanguage();
 
-  const [activeTab, setActiveTab] = useState<'model' | 'exterior' | 'performance' | 'config'>('model');
+  const [activeTab, setActiveTab] = useState<'highlights' | 'model' | 'exterior' | 'performance'>('highlights');
 
   const tabs = [
-    { id: 'highlights', label: 'Highlights' },
-    { id: 'model', label: 'Model Information' },
-    { id: 'exterior', label: 'Exterior Aero' },
-    { id: 'performance', label: 'Performance' },
+    { id: 'highlights', label: t.editorial.tabs.highlights },
+    { id: 'model', label: t.editorial.tabs.model },
+    { id: 'exterior', label: t.editorial.tabs.exterior },
+    { id: 'performance', label: t.editorial.tabs.performance },
   ];
 
   return (
-    <section className="relative w-full py-28 sm:py-36 bg-[#050608] border-t border-white/[0.06] overflow-hidden">
+    <section className="relative w-full py-28 sm:py-36 bg-[#050608] border-t border-white/[0.06] overflow-hidden select-none">
       {/* Background Subtle Gradient & Light Trail */}
       <div className="absolute end-0 top-1/3 w-[300px] sm:w-[600px] h-[300px] bg-[#f36b21]/5 blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Vertical Index Menu (Matching Reference 3) */}
+          {/* Left Column: Vertical Index Menu */}
           <div className="lg:col-span-3 flex flex-col gap-8">
             <div className="flex items-center gap-3" dir="ltr">
               <div className="w-9 h-9 rounded-sm bg-gradient-to-br from-[#1b1f2b] to-black border border-[#f36b21]/40 flex items-center justify-center">
@@ -40,7 +40,7 @@ export const EditorialShowcase: React.FC<EditorialShowcaseProps> = ({
               </span>
             </div>
 
-            {/* Vertical Sub-nav with Active Orange Indicator (Matching Reference 3) */}
+            {/* Vertical Sub-nav with Active Orange Indicator */}
             <nav className="flex flex-col gap-3 text-xs font-tech">
               {tabs.map((tab) => (
                 <button
@@ -61,106 +61,102 @@ export const EditorialShowcase: React.FC<EditorialShowcaseProps> = ({
                 onClick={onOpenConfigurator}
                 className="text-start py-2 text-[#f36b21] hover:text-[#ff8c37] tracking-wider transition-colors font-semibold"
               >
-                Configure Vehicle →
+                {t.editorial.configureCTA}
               </button>
             </nav>
 
             <div className="pt-6 border-t border-white/[0.06]">
               <span className="text-[10px] font-tech text-[#5a6070] uppercase tracking-widest block">
-                7P STUDIO ARCHITECTURE
+                {t.editorial.architectureTag}
               </span>
               <p className="text-xs text-[#848a99] mt-2 font-light leading-relaxed">
-                Sculpted from aerospace carbon fiber and tuned to generate 680kg of functional downforce.
+                {t.editorial.architectureDesc}
               </p>
             </div>
           </div>
 
-          {/* Right Column: Hero Stage with Bold Condensed Headline (Matching Reference 3) */}
+          {/* Right Column: Hero Stage with Bold Condensed Headline */}
           <div className="lg:col-span-9 flex flex-col gap-8">
-            {/* Monumental Headline with Yellow/Orange Play Button */}
+            {/* Monumental Headline with Play Button */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-white/[0.06] pb-8">
               <h2 className="font-condensed font-black text-4xl sm:text-6xl md:text-7xl text-white tracking-tight uppercase leading-[0.95] max-w-xl">
-                EXPERIENCE THE FUTURE OF DRIVING
+                {t.editorial.headline}
               </h2>
 
               <button
                 onClick={() => onExploreCar('vanta-gt900')}
                 className="w-14 h-14 rounded-full bg-[#f36b21] hover:bg-[#ff8c37] flex items-center justify-center text-black shadow-[0_0_25px_rgba(243,107,33,0.5)] transition-transform hover:scale-110 active:scale-95 flex-shrink-0 cursor-pointer"
-                title="Watch Feature Film"
+                title="View GT-900 Dossier"
+                aria-label="View GT-900 Dossier"
               >
                 <Play className="w-6 h-6 fill-black ml-0.5" />
               </button>
             </div>
 
-            {/* Model Name & Big Telemetry Stats (Matching Reference 3) */}
+            {/* Model Name & Big Telemetry Stats with Strict LTR Isolations */}
             <div>
               <span className="font-condensed font-bold text-2xl sm:text-3xl text-[#f36b21] tracking-wider uppercase block mb-6">
-                GT-900 HYPERCAR.
+                <span dir="ltr" className="telemetry-val">{t.editorial.modelBadge}</span>
               </span>
 
               <div className="grid grid-cols-3 gap-6 text-start pb-8 border-b border-white/[0.06]">
                 <div>
-                  <span className="font-display font-black text-2xl sm:text-4xl text-white block">
-                    1,050 Nm
+                  <span dir="ltr" className="telemetry-val font-display font-black text-2xl sm:text-4xl text-white block">
+                    {t.editorial.specTorque}
                   </span>
                   <span className="text-[11px] font-tech text-[#848a99] uppercase tracking-wider mt-1 block">
-                    TORQUE VECTORING
+                    {t.editorial.specTorqueLabel}
                   </span>
                 </div>
                 <div>
-                  <span className="font-display font-black text-2xl sm:text-4xl text-[#f36b21] block">
-                    2.3 s
+                  <span dir="ltr" className="telemetry-val font-display font-black text-2xl sm:text-4xl text-[#f36b21] block">
+                    {t.editorial.specAccel}
                   </span>
                   <span className="text-[11px] font-tech text-[#848a99] uppercase tracking-wider mt-1 block">
-                    0–100 KM/H
+                    {t.editorial.specAccelLabel}
                   </span>
                 </div>
                 <div>
-                  <span className="font-display font-black text-2xl sm:text-4xl text-white block">
-                    385 km/h
+                  <span dir="ltr" className="telemetry-val font-display font-black text-2xl sm:text-4xl text-white block">
+                    {t.editorial.specSpeed}
                   </span>
                   <span className="text-[11px] font-tech text-[#848a99] uppercase tracking-wider mt-1 block">
-                    MAX VELOCITY
+                    {t.editorial.specSpeedLabel}
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Inset Visual Composition (Matching Reference 3) */}
+            {/* Inset Visual Composition */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
               {/* Main Exterior Image */}
-              <div className="md:col-span-8 relative rounded-sm overflow-hidden border border-white/[0.08] bg-[#0c0e14] group">
+              <div className="md:col-span-8 relative rounded-xl overflow-hidden border border-white/[0.08] bg-[#0c0e14] group shadow-xl">
                 <img
                   src="/images/gt900-side.jpg"
                   alt="VANTA GT-900 Side Profile"
                   className="w-full h-auto aspect-16/9 object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute bottom-3 left-3 px-3 py-1 bg-black/80 backdrop-blur-md border border-white/10 text-[10px] font-tech text-[#bfc2c7] uppercase">
-                  Active Carbon Venturi Chutes
+                <div className="absolute bottom-3 start-3 px-3 py-1 bg-black/80 backdrop-blur-md border border-white/10 rounded-full text-[10px] font-tech text-[#bfc2c7] uppercase">
+                  {t.editorial.aeroCaption}
                 </div>
               </div>
 
-              {/* Secondary Inset Cockpit Shot with Telemetry (Matching Reference 3 "002") */}
-              <div className="md:col-span-4 relative rounded-sm overflow-hidden border border-white/[0.08] bg-[#0c0e14] group">
+              {/* Secondary Inset Cockpit Shot with Telemetry */}
+              <div className="md:col-span-4 relative rounded-xl overflow-hidden border border-white/[0.08] bg-[#0c0e14] group shadow-xl">
                 <img
                   src="/images/cockpit-detail.jpg"
                   alt="VANTA Cockpit"
                   className="w-full aspect-4/3 object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex flex-col justify-between">
-                  <span className="text-xs font-tech text-[#f36b21] font-bold">
-                    INSET // 002
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-4">
+                  <span className="text-[9px] font-tech text-[#f36b21] uppercase tracking-widest">
+                    COCKPIT // 002
                   </span>
-                  <div>
-                    <span className="font-display font-bold text-sm text-white block">
-                      Carbon Driver Cell
-                    </span>
-                    <span className="text-[10px] font-tech text-[#848a99]">
-                      Telemetry display with G-meter
-                    </span>
-                  </div>
+                  <span className="text-xs font-display font-bold text-white mt-0.5">
+                    {t.editorial.cockpitCaption}
+                  </span>
                 </div>
               </div>
             </div>
